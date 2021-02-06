@@ -11,8 +11,8 @@ endif
 let g:nnnvi_autoload = 1
 
 let g:nnnvi_default = {
-      \  'left': 40,
-      \  'min': 50
+      \  'layout': exists('g:oterm') ? g:oterm : { 'left': 40, 'min': 50 },
+      \  'maps': {}
       \}
 let s:command = ['nnn']
 let s:temp_file = ''
@@ -73,6 +73,9 @@ function! nnnvi#open(...) abort
   if s:nnnvi_bufnr != -1
     return
   endif
+  if !exists('g:nnnvi')
+    let g:nnnvi = g:nnnvi_default
+  endif
   let s:temp_file = tempname()
   let command = extend(s:command, ['-p', s:temp_file])
   if a:0 > 0
@@ -94,7 +97,8 @@ function! nnnvi#open(...) abort
     endif
     call add(command, directory)
   endif
-  let s:nnnvi_bufnr = oterm#spawn({ 'command': command, 'callback': funcref('s:exit_cb'), 'layout': g:nnnvi_default, 'name': 'nnnvi', 'filetype': 'nnnvi' })
+  let layout = get(g:nnnvi, 'layout', g:nnnvi_default.layout)
+  let s:nnnvi_bufnr = oterm#spawn({ 'command': command, 'callback': funcref('s:exit_cb'), 'layout': layout, 'name': 'nnnvi', 'filetype': 'nnnvi' })
 endfunction
 
 function! s:print_err(msg)

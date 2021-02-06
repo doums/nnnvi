@@ -10,10 +10,6 @@ if exists('g:nnnvi_plugin')
 endif
 let g:nnnvi_plugin = 1
 
-if !exists('g:nnnvi')
-  let g:nnnvi = {}
-endif
-
 command -nargs=? -complete=dir NNN call nnnvi#open([''], <f-args>)
 noremap <silent><unique><script> <Plug>NNNnos <SID>NNNMap
 noremap <SID>NNNMap :NNN<CR>

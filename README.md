@@ -2,13 +2,16 @@
 
 A [n](https://neovim.io/)/[vim](https://www.vim.org/) plugin that uses [nnn](https://github.com/jarun/nnn) as a file manager.
 
+### prerequisites
+- [nnn](https://github.com/jarun/nnn)
+- [oterm](https://github.com/doums/oterm).
+
 ### install
 
 If you use a plugin manager, follow the traditional way.
 
 For example with [vim-plug](https://github.com/junegunn/vim-plug) add this in `.vimrc`/`init.vim`:
 ```
-Plug 'doums/oterm'
 Plug 'doums/nnnvi'
 ```
 
@@ -21,19 +24,26 @@ If you use vim package `:h packages`.
 
 ### configuration
 
-To avoid overriding nnn's own keybinds there is no default configuration. But you can assign custom maps to vim command that will be executed to open the file(s) you have selected.
-
 ```
 " .vimrc/init.vim
 
 let g:nnnvi = {
-      \  '<A-s>': 'split',
-      \  '<A-v>': 'vsplit',
-      \  '<A-t>': 'tabedit',
+      \  'layout': { 'left': 40, 'min': 50 },
+      \  'maps': {
+      \    '<A-s>': 'split',
+      \    '<A-v>': 'vsplit',
+      \    '<A-t>': 'tabedit',
+      \  }
       \}
 ```
 
-#### commands
+#### `layout`
+An `oterm` layout. See [oterm](https://github.com/doums/oterm). Default is `g:oterm` if it exists or `{ 'left': 40, 'min': 50 }`.
+
+#### `maps`
+To avoid overriding nnn's own keybinds there is no default maps configuration. But you are free to assign custom maps to vim command that will be executed to open the file(s) you have selected.
+
+### commands
 
 ```
 :NNN
@@ -68,3 +78,4 @@ A string: a path from which to open nnn.
 
 ### license
 Mozilla Public License 2.0
+

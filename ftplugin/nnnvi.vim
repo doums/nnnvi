@@ -7,8 +7,10 @@ if exists("g:nnnvi_ftplugin")
 endif
 let b:nnnvi_ftplugin = 1
 
-for key in keys(g:nnnvi)
-  exec 'tnoremap <nowait><buffer><silent> '.key.' <c-\><c-n>:<c-u>call nnnvi#set_action("'.g:nnnvi[key].'")<cr>'
-endfor
+if exists('g:nnnvi') && has_key(g:nnnvi, 'maps')
+  for key in keys(g:nnnvi.maps)
+    exec 'tnoremap <nowait><buffer><silent> '.key.' <c-\><c-n>:<c-u>call nnnvi#set_action("'.g:nnnvi.maps[key].'")<cr>'
+  endfor
+endif
 
 setlocal nospell bufhidden=wipe nobuflisted
