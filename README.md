@@ -61,7 +61,7 @@ call nnnvi#open(nnn_options, path)
 All arguments are optional.
 
 #### `nnn_options`
-A string or a list of string: the nnn command line options.
+A string or a list of string: the nnn command line options (see `man nnn`).
 
 #### `path`
 A string: a path from which to open nnn.
