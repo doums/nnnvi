@@ -18,5 +18,10 @@ command -nargs=? -complete=dir NNNs call nnnvi#open(['-S'], <f-args>)
 noremap <silent><unique><script> <Plug>NNNs <SID>NNNsMap
 noremap <SID>NNNsMap :NNNs<CR>
 
+augroup nnnvi
+  autocmd!
+  autocmd BufEnter * if isdirectory(expand("%")) | call nnnvi#open_dir("%") | endif
+augroup END
+
 let &cpo = s:save_cpo
 unlet s:save_cpo

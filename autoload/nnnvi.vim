@@ -83,22 +83,28 @@ function! nnnvi#open(...) abort
       call s:print_err('nnnvi#open, wrong type for first argument, string or list of string expected')
       return
     endif
-    if type(a:1) == v:t_list
+    if type(a:1) == v:t_list && !empty(a:1)
       let command = extend(s:command, a:1)
-    else
+    elseif type(a:1) == v:t_string && !empty(a:1)
       let command = add(s:command, split(a:1))
     endif
   endif
   if a:0 > 1
     let directory = expand(a:2)
     if !isdirectory(directory)
-      echom a:2.' is not a valid directory'
+      call s:print_err('"'.a:2.'" is not a valid directory')
       return
     endif
     call add(command, directory)
   endif
   let layout = get(g:nnnvi, 'layout', g:nnnvi_default.layout)
   let s:nnnvi_bufnr = oterm#spawn({ 'command': command, 'callback': funcref('s:exit_cb'), 'layout': layout, 'name': 'nnnvi', 'filetype': 'nnnvi' })
+endfunction
+
+function! nnnvi#open_dir(path)
+  let l:path = expand(a:path)
+  bdelete!
+  call nnnvi#open('', l:path)
 endfunction
 
 function! s:print_err(msg)
