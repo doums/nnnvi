@@ -4,7 +4,7 @@ A [n](https://neovim.io/)/[vim](https://www.vim.org/) plugin that uses [nnn](htt
 
 ### prerequisites
 - [nnn](https://github.com/jarun/nnn)
-- [oterm](https://github.com/doums/oterm).
+- [oterm](https://github.com/doums/oterm)
 
 ### install
 
