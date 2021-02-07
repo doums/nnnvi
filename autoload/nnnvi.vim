@@ -2,13 +2,13 @@
 " License, v. 2.0. If a copy of the MPL was not distributed with this
 " file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-let s:save_cpo = &cpo
-set cpo&vim
-
 if exists('g:nnnvi_autoload')
   finish
 endif
 let g:nnnvi_autoload = 1
+
+let s:save_cpo = &cpo
+set cpo&vim
 
 let g:nnnvi_default = {
       \  'layout': exists('g:oterm') ? g:oterm : { 'left': 40, 'min': 50 },
