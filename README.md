@@ -43,6 +43,8 @@ An `oterm` layout. See [oterm](https://github.com/doums/oterm). Default is `g:ot
 #### `maps`
 To avoid overriding nnn's own keybinds there is no default maps configuration. But you are free to assign custom maps to vim command that will be executed to open the file(s) you have selected.
 
+NOTE: Maps will be created only for nnnvi's buffer (`:h map-<buffer>`) and terminal mode.
+
 ### commands
 
 ```
