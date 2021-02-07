@@ -24,7 +24,7 @@ function! nnnvi#set_action(action)
   if has('nvim')
     call feedkeys("i\<cr>")
   else
-    call term_sendkeys(s:tbuf, "\<cr>")
+    call term_sendkeys(s:nnnvi_bufnr, "\<cr>")
   endif
 endfunction
 
