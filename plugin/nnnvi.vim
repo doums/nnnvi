@@ -10,11 +10,11 @@ let g:nnnvi_plugin = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-command -nargs=? -complete=dir NNN call nnnvi#open([''], <f-args>)
+command -nargs=? -complete=dir NNN call nnnvi#open('', <f-args>)
 noremap <silent><unique><script> <Plug>NNNnos <SID>NNNMap
 noremap <SID>NNNMap :NNN<CR>
 
-command -nargs=? -complete=dir NNNs call nnnvi#open(['-S'], <f-args>)
+command -nargs=? -complete=dir NNNs call nnnvi#open('-S', <f-args>)
 noremap <silent><unique><script> <Plug>NNNs <SID>NNNsMap
 noremap <SID>NNNsMap :NNNs<CR>
 

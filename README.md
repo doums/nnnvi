@@ -33,7 +33,8 @@ let g:nnnvi = {
       \    '<A-s>': 'split',
       \    '<A-v>': 'vsplit',
       \    '<A-t>': 'tabedit',
-      \  }
+      \  },
+      \  'options': '-A'
       \}
 ```
 
@@ -45,12 +46,15 @@ To avoid overriding nnn's own keybinds there is no default maps configuration. B
 
 NOTE: Maps will be created only for nnnvi's buffer (`:h map-<buffer>`) and terminal mode.
 
+#### `options`
+Custom nnn command line options, see `man nnn`.
+
 ### commands
 
 ```
 :NNN
 ```
-Open nnn in non persistent session mode. (no `-S` option)
+Open nnn.
 
 ```
 :NNNs

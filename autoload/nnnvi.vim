@@ -78,15 +78,25 @@ function! nnnvi#open(...) abort
   endif
   let s:temp_file = tempname()
   let command = extend(s:command, ['-p', s:temp_file])
+  let custom_opts = get(g:nnnvi, 'options')
+  if !empty(custom_opts)
+    if type(custom_opts) == v:t_list
+      let command = extend(s:command, custom_opts)
+    elseif type(custom_opts) == v:t_string
+      let command = extend(s:command, split(custom_opts))
+    else
+      call s:print_err('g:nnnvi.options, bad type, string or list of string expected')
+    endif
+  endif
   if a:0 > 0
     if type(a:1) != v:t_list && type(a:1) != v:t_string
-      call s:print_err('nnnvi#open, wrong type for first argument, string or list of string expected')
+      call s:print_err('nnnvi#open, bad type for first argument, string or list of string expected')
       return
     endif
     if type(a:1) == v:t_list && !empty(a:1)
       let command = extend(s:command, a:1)
     elseif type(a:1) == v:t_string && !empty(a:1)
-      let command = add(s:command, split(a:1))
+      let command = extend(s:command, split(a:1))
     endif
   endif
   if a:0 > 1
